@@ -44,6 +44,7 @@ export default {
   methods: {
     home() {
       this.$parent.$emit('back-to-home');
+      this.select = 'event';
       return this.$router.push('/');
     },
     selectPart(name) {
