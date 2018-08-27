@@ -1,6 +1,6 @@
 <template>
     <div class="nav-right">
-        <img src="@/assets/univ_logo.png" alt="Logo de l'Université">
+        <img src="@/assets/univ_logo.jpeg" alt="Logo de l'Université">
         <ul>
             <router-link v-for="(lvl, index) in section" :key="index"
             :to="`${lvl.path}`" tag="li" @click.native="selectSection(lvl.name)"
@@ -41,6 +41,7 @@ export default {
 
 <style scoped>
 .nav-right {
+    z-index: 1;
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -50,7 +51,7 @@ export default {
     bottom: 0;
     width: 15%;
     height: auto;
-    background-color: #cdcdcd;
+    background-color: #ae2573;
 }
 img {
     position: absolute;
@@ -58,6 +59,7 @@ img {
     top: 1vh;
     cursor: pointer;
     width: 100%;
+    height: 13%;
     margin: 0;
 }
 ul {
@@ -90,12 +92,20 @@ li {
     transform: translateX(-100%);
 }
 .icon path {
-    stroke: #cdcdcd;
+    stroke: #ae2573;
     stroke-width: 5px;
     fill: none;
 }
 li:hover .icon {
     opacity: 1;
     transform: translateX(0);
+}
+@media (max-width: 768px) {
+    .nav-right {
+        width: 40%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
 }
 </style>

@@ -21,8 +21,8 @@ export default {
 .header {
     display: flex;
     align-items: center;
-    height: 5vh;
-    border-bottom: #cdcdcd solid 0.2vh;
+    height: 6vh;
+    border-bottom: #ae2573 solid 0.2vh;
 }
 img {
     position: absolute;
