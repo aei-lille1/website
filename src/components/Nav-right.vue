@@ -36,6 +36,11 @@ export default {
       this.select = name;
     },
   },
+  mounted() {
+    this.$parent.$on('back-to-home', () => {
+      this.select = 'Accueil';
+    });
+  },
 };
 </script>
 

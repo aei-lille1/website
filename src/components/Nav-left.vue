@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     home() {
+      this.$parent.$emit('back-to-home');
       return this.$router.push('/');
     },
     selectPart(name) {
