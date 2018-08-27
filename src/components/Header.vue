@@ -11,6 +11,7 @@ export default {
   name: 'Header',
   methods: {
     staff() {
+      this.$parent.$parent.$emit('back-to-home');
       return this.$router.push('/Staff');
     },
   },
