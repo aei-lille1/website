@@ -42,7 +42,7 @@ export default {
   .right-toggle {
     display: block;
     position: fixed;
-    z-index: 2;
+    z-index: 9998;
     right: 2%;
     top: 10px;
     cursor: pointer;

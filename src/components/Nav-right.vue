@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 .nav-right {
-    z-index: 1;
+    z-index: 9997;
     display: flex;
     flex-direction: column;
     overflow: auto;

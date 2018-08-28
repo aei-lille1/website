@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .nav-left {
-    z-index: 1;
+    z-index: 9997;
     display: flex;
     flex-direction: column;
     overflow: auto;
