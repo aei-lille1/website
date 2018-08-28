@@ -35,6 +35,7 @@ export default {
     selectSection(name) {
       this.$parent.$emit('section-changed');
       this.select = name;
+      this.$parent.$emit('click');
     },
   },
   mounted() {
@@ -43,6 +44,9 @@ export default {
     });
     this.$parent.$on('open-right', () => {
       this.open = !this.open;
+    });
+    this.$parent.$on('click', () => {
+      this.open = false;
     });
   },
 };

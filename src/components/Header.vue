@@ -12,6 +12,7 @@ export default {
   methods: {
     staff() {
       this.$parent.$parent.$emit('back-to-home');
+      this.$parent.$parent.$emit('click');
       return this.$router.push('/Staff');
     },
   },

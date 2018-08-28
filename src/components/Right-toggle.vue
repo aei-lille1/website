@@ -19,6 +19,11 @@ export default {
       this.$parent.$emit('open-right');
     },
   },
+  mounted() {
+    this.$parent.$on('click', () => {
+      this.open = false;
+    });
+  },
 };
 </script>
 
@@ -39,6 +44,7 @@ export default {
     position: fixed;
     z-index: 2;
     right: 2%;
+    top: 0;
     cursor: pointer;
   }
 }

@@ -46,10 +46,12 @@ export default {
     home() {
       this.$parent.$emit('back-to-home');
       this.select = 'event';
+      this.$parent.$emit('click');
       return this.$router.push('/');
     },
     selectPart(name) {
       this.select = name;
+      this.$parent.$emit('click');
     },
   },
   mounted() {
@@ -58,6 +60,9 @@ export default {
     });
     this.$parent.$on('open-left', () => {
       this.open = !this.open;
+    });
+    this.$parent.$on('click', () => {
+      this.open = false;
     });
   },
 };
