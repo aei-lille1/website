@@ -94,6 +94,12 @@ li {
     cursor: pointer;
     margin: 0.1vh 0 0 0;
 }
+li:hover {
+    background-color: rgb(230, 230, 230);
+}
+.selected {
+    background-color: rgb(230, 230, 230);
+}
 .selected .icon {
     opacity: 1;
     transform: translateX(0);
