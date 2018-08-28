@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-right">
+    <div class="nav-right" v-bind:class="{ opened: open }">
         <img src="@/assets/univ_logo.jpeg" alt="Logo de l'Université">
         <ul>
             <router-link v-for="(lvl, index) in section" :key="index"
@@ -19,6 +19,7 @@ export default {
   name: 'NavRight',
   data() {
     return {
+      open: false,
       select: 'Accueil',
       section: [
         { path: '/', name: 'Accueil' },
@@ -39,6 +40,9 @@ export default {
   mounted() {
     this.$parent.$on('back-to-home', () => {
       this.select = 'Accueil';
+    });
+    this.$parent.$on('open-right', () => {
+      this.open = !this.open;
     });
   },
 };
@@ -109,8 +113,12 @@ li:hover .icon {
     .nav-right {
         width: 40%;
         top: 0;
-        right: 0;
         bottom: 0;
+        transition: all 0.5s;
+        transform: translateX(100%);
+    }
+    .opened {
+        transform: translateX(0%);
     }
 }
 </style>

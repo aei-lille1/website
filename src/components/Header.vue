@@ -42,4 +42,13 @@ img {
 .discord {
     right: 1vh;
 }
+@media (max-width: 768px) {
+  .staff {
+    margin-left: 7vh;
+  }
+  .fb,
+  .discord {
+    margin-right: 7vh;
+  }
+}
 </style>

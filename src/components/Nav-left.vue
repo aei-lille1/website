@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-left">
+    <div class="nav-left" v-bind:class="{ opened: open }">
         <img src="@/assets/aei_logo.jpg" alt="logo de l'AEI" @click="home">
         <ul v-if="this.$route.path !== '/Staff'">
             <li @click="selectPart('event')" v-bind:class="{ selected: select === 'event' }">
@@ -38,6 +38,7 @@ export default {
   name: 'NavLeft',
   data() {
     return {
+      open: false,
       select: 'event',
     };
   },
@@ -54,6 +55,9 @@ export default {
   mounted() {
     this.$parent.$on('section-changed', () => {
       this.select = 'event';
+    });
+    this.$parent.$on('open-left', () => {
+      this.open = !this.open;
     });
   },
 };
@@ -126,8 +130,12 @@ li:hover .icon {
     .nav-left {
         width: 50%;
         top: 0;
-        left: 0;
         bottom: 0;
+        transition: all 0.5s;
+        transform: translateX(-100%);
+    }
+    .opened {
+        transform: translateX(0%);
     }
 }
 </style>
