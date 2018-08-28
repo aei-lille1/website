@@ -14,5 +14,9 @@ export default {
 .m2 {
     font-size: 2.5vh;
     height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 </style>
