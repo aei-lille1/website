@@ -44,7 +44,7 @@ export default {
     position: fixed;
     z-index: 2;
     left: 2%;
-    top: 0;
+    top: 10px;
     cursor: pointer;
   }
 }
