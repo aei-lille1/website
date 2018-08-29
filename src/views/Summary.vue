@@ -18,8 +18,6 @@
             </a>
           </div>
         </div>
-        {{screenWidth}}
-        {{screenHeight}}
     </div>
 </template>
 

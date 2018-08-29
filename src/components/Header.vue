@@ -1,6 +1,9 @@
 <template>
     <div class="header">
         <img class="staff" @click="staff" src="@/assets/staff.jpeg" alt="staff">
+        <a href="https://twitter.com/AEILille1" target="_blank">
+            <img class="twitter" src="@/assets/twitter.png" alt="twitter">
+        </a>
         <a href="https://www.facebook.com/aei.lille1/" target="_blank">
             <img class="fb" src="@/assets/fb.png" alt="facebook">
         </a>
@@ -54,12 +57,17 @@ a {
     top: 1vh;
     right: 1vh;
 }
+.twitter {
+    top: 1vh;
+    right: 11vh;
+}
 @media (max-width: 768px) {
   .staff {
     margin-left: 7vh;
   }
   .fb,
-  .discord {
+  .discord,
+  .twitter {
     margin-right: 7vh;
   }
 }
