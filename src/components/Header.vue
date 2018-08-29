@@ -1,8 +1,12 @@
 <template>
     <div class="header">
         <img class="staff" @click="staff" src="@/assets/staff.jpeg" alt="staff">
-        <img class="fb" src="@/assets/fb.png" alt="facebook">
-        <img class="discord" src="@/assets/discord.jpg" alt="discord">
+        <a href="https://www.facebook.com/aei.lille1/" target="_blank">
+            <img class="fb" src="@/assets/fb.png" alt="facebook">
+        </a>
+        <a href="https://discordapp.com/invite/Jz96bUK" target="_blank">
+            <img class="discord" src="@/assets/discord.jpg" alt="discord">
+        </a>
     </div>
 </template>
 
@@ -37,10 +41,17 @@ img {
     border-radius: 0;
     left: 1vh;
 }
+a {
+    position: absolute;
+    right: 1%;
+    top: 0;
+}
 .fb {
+    top: 1vh;
     right: 6vh;
 }
 .discord {
+    top: 1vh;
     right: 1vh;
 }
 @media (max-width: 768px) {
