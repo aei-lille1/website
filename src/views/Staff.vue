@@ -94,5 +94,9 @@ span {
         min-height: 15vh;
         font-size: 1.5vh;
     }
+    img {
+        width: 40vw;
+        min-height: 15vh;
+    }
 }
 </style>
