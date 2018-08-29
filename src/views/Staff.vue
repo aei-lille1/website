@@ -3,6 +3,7 @@
         <h1>Staff</h1>
         <div class="staff-list">
             <div v-for="(member, index) in staff" :key="index" class="member">
+                <img src="@/assets/staff-icon.png" alt="Staff icône">
                 <span class="bold">{{member.name}}</span>
                 <span class="role">{{member.role}}</span>
             </div>
@@ -59,6 +60,12 @@ export default {
     transition: all 0.1s;
     transform: rotateX(-180deg);
 }
+img {
+    position: fixed;
+    width: 12vw;
+    height: 20vh;
+    transform: rotateX(-180deg);
+}
 span {
     transform: rotateX(-180deg);
     opacity: 0;
@@ -66,6 +73,9 @@ span {
 .member:hover span {
     transform: rotateX(0deg);
     opacity: 1;
+}
+.member:hover img {
+    opacity: 0;
 }
 .member:hover {
     transform: rotateX(0deg);
