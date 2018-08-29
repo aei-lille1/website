@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-left">
+    <div class="nav-left" v-bind:class="{ opened: open }">
         <img src="@/assets/aei_logo.jpg" alt="logo de l'AEI" @click="home">
         <ul v-if="this.$route.path !== '/Staff'">
             <li @click="selectPart('event')" v-bind:class="{ selected: select === 'event' }">
@@ -38,20 +38,31 @@ export default {
   name: 'NavLeft',
   data() {
     return {
+      open: false,
       select: 'event',
     };
   },
   methods: {
     home() {
+      this.$parent.$emit('back-to-home');
+      this.select = 'event';
+      this.$parent.$emit('click');
       return this.$router.push('/');
     },
     selectPart(name) {
       this.select = name;
+      this.$parent.$emit('click');
     },
   },
   mounted() {
     this.$parent.$on('section-changed', () => {
       this.select = 'event';
+    });
+    this.$parent.$on('open-left', () => {
+      this.open = !this.open;
+    });
+    this.$parent.$on('click', () => {
+      this.open = false;
     });
   },
 };
@@ -59,6 +70,7 @@ export default {
 
 <style scoped>
 .nav-left {
+    z-index: 9997;
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -68,7 +80,7 @@ export default {
     bottom: 0;
     width: 20%;
     height: auto;
-    background-color: #cdcdcd;
+    background-color: #ae2573;
 }
 img {
     position: absolute;
@@ -98,7 +110,13 @@ li {
     background-color: rgb(255, 255, 255);
     font-size: 3vh;
     cursor: pointer;
-    margin: 0.1vh 0 0 0;
+    margin-top: 0.3vh;
+}
+li:hover {
+    background-color: rgb(230, 230, 230);
+}
+.selected {
+    background-color: rgb(230, 230, 230);
 }
 .selected .icon {
     opacity: 1;
@@ -111,12 +129,24 @@ li {
     transform: translateX(-100%);
 }
 .icon path {
-    stroke: #cdcdcd;
+    stroke: #ae2573;
     stroke-width: 5px;
     fill: none;
 }
 li:hover .icon {
     opacity: 1;
     transform: translateX(0);
+}
+@media (max-width: 768px) {
+    .nav-left {
+        width: 50%;
+        top: 0;
+        bottom: 0;
+        transition: all 0.5s;
+        transform: translateX(-100%);
+    }
+    .opened {
+        transform: translateX(0%);
+    }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <div class="nav-right">
-        <img src="@/assets/univ_logo.png" alt="Logo de l'Université">
+    <div class="nav-right" v-bind:class="{ opened: open }">
+        <img src="@/assets/univ_logo.jpeg" alt="Logo de l'Université">
         <ul>
             <router-link v-for="(lvl, index) in section" :key="index"
             :to="`${lvl.path}`" tag="li" @click.native="selectSection(lvl.name)"
@@ -19,6 +19,7 @@ export default {
   name: 'NavRight',
   data() {
     return {
+      open: false,
       select: 'Accueil',
       section: [
         { path: '/', name: 'Accueil' },
@@ -34,13 +35,26 @@ export default {
     selectSection(name) {
       this.$parent.$emit('section-changed');
       this.select = name;
+      this.$parent.$emit('click');
     },
+  },
+  mounted() {
+    this.$parent.$on('back-to-home', () => {
+      this.select = 'Accueil';
+    });
+    this.$parent.$on('open-right', () => {
+      this.open = !this.open;
+    });
+    this.$parent.$on('click', () => {
+      this.open = false;
+    });
   },
 };
 </script>
 
 <style scoped>
 .nav-right {
+    z-index: 9997;
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -50,7 +64,7 @@ export default {
     bottom: 0;
     width: 15%;
     height: auto;
-    background-color: #cdcdcd;
+    background-color: #ae2573;
 }
 img {
     position: absolute;
@@ -58,6 +72,7 @@ img {
     top: 1vh;
     cursor: pointer;
     width: 100%;
+    height: 13%;
     margin: 0;
 }
 ul {
@@ -79,6 +94,12 @@ li {
     cursor: pointer;
     margin: 0.1vh 0 0 0;
 }
+li:hover {
+    background-color: rgb(230, 230, 230);
+}
+.selected {
+    background-color: rgb(230, 230, 230);
+}
 .selected .icon {
     opacity: 1;
     transform: translateX(0);
@@ -90,12 +111,24 @@ li {
     transform: translateX(-100%);
 }
 .icon path {
-    stroke: #cdcdcd;
+    stroke: #ae2573;
     stroke-width: 5px;
     fill: none;
 }
 li:hover .icon {
     opacity: 1;
     transform: translateX(0);
+}
+@media (max-width: 768px) {
+    .nav-right {
+        width: 40%;
+        top: 0;
+        bottom: 0;
+        transition: all 0.5s;
+        transform: translateX(100%);
+    }
+    .opened {
+        transform: translateX(0%);
+    }
 }
 </style>

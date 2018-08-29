@@ -18,6 +18,7 @@ export default {
 
 <style scoped>
 .body {
+    z-index: 0;
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -29,5 +30,12 @@ export default {
     width: 65%;
     height: auto;
     background-color: white;
+}
+@media (max-width: 768px) {
+    .body {
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
 }
 </style>
