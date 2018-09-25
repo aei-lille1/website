@@ -1,6 +1,5 @@
 <template>
     <div class="header">
-        <img class="staff" @click="staff" src="@/assets/staff.jpeg" alt="staff">
         <a href="https://twitter.com/AEILille1" target="_blank">
             <img class="twitter" src="@/assets/twitter.png" alt="twitter">
         </a>
@@ -16,13 +15,6 @@
 <script>
 export default {
   name: 'Header',
-  methods: {
-    staff() {
-      this.$parent.$parent.$emit('back-to-home');
-      this.$parent.$parent.$emit('click');
-      return this.$router.push('/Staff');
-    },
-  },
 };
 </script>
 

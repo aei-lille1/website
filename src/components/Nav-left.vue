@@ -1,30 +1,11 @@
 <template>
     <div class="nav-left" v-bind:class="{ opened: open }">
         <img src="@/assets/aei_logo.jpg" alt="logo de l'AEI" @click="home">
-        <ul v-if="this.$route.path !== '/Staff'">
-            <li @click="selectPart('event')" v-bind:class="{ selected: select === 'event' }">
-                Événements à venir
-                <svg viewBox="0 0 20 20" class="icon">
-                    <path d="M20 0 L10 10 L20 20"></path>
-                </svg>
-            </li>
-            <li v-if="this.$route.path !== '/'" @click="selectPart('date')"
-            v-bind:class="{ selected: select === 'date' }">
-                Dates des examens
-                <svg viewBox="0 0 20 20" class="icon">
-                    <path d="M20 0 L10 10 L20 20"></path>
-                </svg>
-            </li>
-            <li v-if="this.$route.path !== '/'" @click="selectPart('info')"
-            v-bind:class="{ selected: select === 'info' }">
-                Informations & fichiers
-                <svg viewBox="0 0 20 20" class="icon">
-                    <path d="M20 0 L10 10 L20 20"></path>
-                </svg>
-            </li>
-            <li v-if="this.$route.path !== '/'" @click="selectPart('photo')"
-            v-bind:class="{ selected: select === 'photo' }">
-                Photos
+        <ul>
+            <li v-for="(part, index) in tab" :key="index"
+            v-bind:class="{ selected: select === part.type }"
+            @click="selectPart(part.type)">
+                {{ part.name }}
                 <svg viewBox="0 0 20 20" class="icon">
                     <path d="M20 0 L10 10 L20 20"></path>
                 </svg>
@@ -39,25 +20,27 @@ export default {
   data() {
     return {
       open: false,
-      select: 'event',
+      select: 'summary',
+      tab: [
+        { name: 'Événements à venir', type: 'event' },
+        { name: 'Photos', type: 'photo' },
+        { name: 'Équipe', type: 'staff' },
+      ],
     };
   },
   methods: {
     home() {
-      this.$parent.$emit('back-to-home');
-      this.select = 'event';
+      this.select = 'summary';
       this.$parent.$emit('click');
       return this.$router.push('/');
     },
     selectPart(name) {
       this.select = name;
       this.$parent.$emit('click');
+      return this.$router.push(`/${name}`);
     },
   },
   mounted() {
-    this.$parent.$on('section-changed', () => {
-      this.select = 'event';
-    });
     this.$parent.$on('open-left', () => {
       this.open = !this.open;
     });

@@ -2,14 +2,14 @@
     <div class="nav-right" v-bind:class="{ opened: open }">
         <img src="@/assets/univ_logo.jpeg" alt="Logo de l'Université">
         <ul>
-            <router-link v-for="(lvl, index) in section" :key="index"
-            :to="`${lvl.path}`" tag="li" @click.native="selectSection(lvl.name)"
-            v-bind:class="{ selected: select === lvl.name }">
-                <svg viewBox="0 0 20 20" class="icon">
-                    <path d="M0 0 L10 10 L0 20"></path>
-                </svg>
-                {{ lvl.name }}
-            </router-link>
+            <li v-for="(lvl, index) in section" :key="index">
+                <a v-bind:href="lvl.path" target="_blank">
+                    <svg viewBox="0 0 20 20" class="icon">
+                        <path d="M0 0 L10 10 L0 20"></path>
+                    </svg>
+                    {{ lvl.name }}
+                </a>
+            </li>
         </ul>
     </div>
 </template>
@@ -20,33 +20,15 @@ export default {
   data() {
     return {
       open: false,
-      select: 'Accueil',
       section: [
-        { path: '/', name: 'Accueil' },
-        { path: '/L1', name: 'Licence 1' },
-        { path: '/L2', name: 'Licence 2' },
-        { path: '/L3', name: 'Licence 3' },
-        { path: '/M1', name: 'Master 1' },
-        { path: '/M2', name: 'Master 2' },
+        { path: 'http://www.fil.univ-lille1.fr/portail/index.php?dipl=L&label=Pr%C3%A9sentation', name: 'Licence' },
+        { path: 'http://www.fil.univ-lille1.fr/portail/index.php?dipl=MInfo&label=Pr%C3%A9sentation', name: 'Master' },
       ],
     };
   },
-  methods: {
-    selectSection(name) {
-      this.$parent.$emit('section-changed');
-      this.select = name;
-      this.$parent.$emit('click');
-    },
-  },
   mounted() {
-    this.$parent.$on('back-to-home', () => {
-      this.select = 'Accueil';
-    });
     this.$parent.$on('open-right', () => {
       this.open = !this.open;
-    });
-    this.$parent.$on('click', () => {
-      this.open = false;
     });
   },
 };
